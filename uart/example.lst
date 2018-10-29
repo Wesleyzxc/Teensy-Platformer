@@ -1,0 +1,125 @@
+   1               		.file	"example.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.section	.text.uart_print_P,"ax",@progbits
+  17               	.global	uart_print_P
+  19               	uart_print_P:
+  20               	.LFB2:
+  21               	.LSM0:
+  22               	.LVL0:
+  23 0000 CF93      		push r28
+  24 0002 DF93      		push r29
+  25               	/* prologue: function */
+  26               	/* frame size = 0 */
+  27 0004 EC01      		movw r28,r24
+  28               	.LVL1:
+  29               	.L3:
+  30               	.LSM1:
+  31 0006 FE01      		movw r30,r28
+  32               	.LVL2:
+  33               	.LBB2:
+  34               	.LSM2:
+  35 0008 2196      		adiw r28,1
+  36               	/* #APP */
+  37               	 ;  16 "example.c" 1
+  38 000a 8491      		lpm r24, Z
+  39               		
+  40               	 ;  0 "" 2
+  41               	.LVL3:
+  42               	/* #NOAPP */
+  43               	.LBE2:
+  44               	.LSM3:
+  45 000c 8823      		tst r24
+  46 000e 01F0      		breq .L4
+  47               	.LSM4:
+  48 0010 0E94 0000 		call uart_putchar
+  49               	.LVL4:
+  50 0014 00C0      		rjmp .L3
+  51               	.LVL5:
+  52               	.L4:
+  53               	/* epilogue start */
+  54               	.LSM5:
+  55 0016 DF91      		pop r29
+  56 0018 CF91      		pop r28
+  57               	.LVL6:
+  58 001a 0895      		ret
+  59               	.LFE2:
+  61               		.section	.text.main,"ax",@progbits
+  62               	.global	main
+  64               	main:
+  65               	.LFB3:
+  66               	.LSM6:
+  67 0000 1F93      		push r17
+  68               	/* prologue: function */
+  69               	/* frame size = 0 */
+  70               	.LSM7:
+  71 0002 80E8      		ldi r24,lo8(-128)
+  72 0004 8093 6100 		sts 97,r24
+  73 0008 1092 6100 		sts 97,__zero_reg__
+  74               	.LSM8:
+  75 000c 60E0      		ldi r22,lo8(38400)
+  76 000e 76E9      		ldi r23,hi8(38400)
+  77 0010 80E0      		ldi r24,hlo8(38400)
+  78 0012 90E0      		ldi r25,hhi8(38400)
+  79 0014 0E94 0000 		call uart_init
+  80               	.LSM9:
+  81 0018 80E0      		ldi r24,lo8(__c.1347)
+  82 001a 90E0      		ldi r25,hi8(__c.1347)
+  83 001c 0E94 0000 		call uart_print_P
+  84               	.LVL7:
+  85               	.L10:
+  86               	.LSM10:
+  87 0020 0E94 0000 		call uart_available
+  88 0024 8823      		tst r24
+  89 0026 01F0      		breq .L10
+  90               	.LSM11:
+  91 0028 0E94 0000 		call uart_getchar
+  92 002c 182F      		mov r17,r24
+  93               	.LSM12:
+  94 002e 80E0      		ldi r24,lo8(__c.1349)
+  95 0030 90E0      		ldi r25,hi8(__c.1349)
+  96 0032 0E94 0000 		call uart_print_P
+  97               	.LSM13:
+  98 0036 812F      		mov r24,r17
+  99 0038 0E94 0000 		call uart_putchar
+ 100               	.LSM14:
+ 101 003c 8DE0      		ldi r24,lo8(13)
+ 102 003e 0E94 0000 		call uart_putchar
+ 103               	.LSM15:
+ 104 0042 8AE0      		ldi r24,lo8(10)
+ 105 0044 0E94 0000 		call uart_putchar
+ 106 0048 00C0      		rjmp .L10
+ 107               	.LFE3:
+ 109               		.section	.progmem.data,"a",@progbits
+ 112               	__c.1349:
+ 113 0000 4279 7465 		.string	"Byte: "
+ 113      3A20 00
+ 116               	__c.1347:
+ 117 0007 5541 5254 		.string	"UART Example\r\n"
+ 117      2045 7861 
+ 117      6D70 6C65 
+ 117      0D0A 00
+ 150               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 example.c
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:2      *ABS*:0000003f __SREG__
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:3      *ABS*:0000003e __SP_H__
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:4      *ABS*:0000003d __SP_L__
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:5      *ABS*:00000034 __CCP__
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:6      *ABS*:00000000 __tmp_reg__
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:7      *ABS*:00000001 __zero_reg__
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:19     .text.uart_print_P:00000000 uart_print_P
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:64     .text.main:00000000 main
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:116    .progmem.data:00000007 __c.1347
+C:\cab202_software\cygwin\tmp/cc9oiXwm.s:112    .progmem.data:00000000 __c.1349
+
+UNDEFINED SYMBOLS
+uart_putchar
+uart_init
+uart_available
+uart_getchar

@@ -1,0 +1,556 @@
+   1               		.file	"example.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.section	.text.send_str,"ax",@progbits
+  17               	.global	send_str
+  19               	send_str:
+  20               	.LFB7:
+  21               	.LSM0:
+  22               	.LVL0:
+  23 0000 CF93      		push r28
+  24 0002 DF93      		push r29
+  25               	/* prologue: function */
+  26               	/* frame size = 0 */
+  27 0004 EC01      		movw r28,r24
+  28               	.LVL1:
+  29               	.L3:
+  30               	.LSM1:
+  31 0006 FE01      		movw r30,r28
+  32               	.LVL2:
+  33               	.LBB15:
+  34               	.LSM2:
+  35 0008 2196      		adiw r28,1
+  36               	/* #APP */
+  37               	 ;  109 "example.c" 1
+  38 000a 8491      		lpm r24, Z
+  39               		
+  40               	 ;  0 "" 2
+  41               	.LVL3:
+  42               	/* #NOAPP */
+  43               	.LBE15:
+  44               	.LSM3:
+  45 000c 8823      		tst r24
+  46 000e 01F0      		breq .L4
+  47               	.LSM4:
+  48 0010 0E94 0000 		call usb_serial_putchar
+  49               	.LVL4:
+  50 0014 00C0      		rjmp .L3
+  51               	.LVL5:
+  52               	.L4:
+  53               	/* epilogue start */
+  54               	.LSM5:
+  55 0016 DF91      		pop r29
+  56 0018 CF91      		pop r28
+  57               	.LVL6:
+  58 001a 0895      		ret
+  59               	.LFE7:
+  61               		.section	.text.parse_and_execute_command,"ax",@progbits
+  62               	.global	parse_and_execute_command
+  64               	parse_and_execute_command:
+  65               	.LFB9:
+  66               	.LSM6:
+  67               	.LVL7:
+  68 0000 CF93      		push r28
+  69 0002 DF93      		push r29
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72 0004 EC01      		movw r28,r24
+  73               	.LSM7:
+  74 0006 6330      		cpi r22,lo8(3)
+  75 0008 00F4      		brsh .L6
+  76               	.LVL8:
+  77               	.LSM8:
+  78 000a 80E0      		ldi r24,lo8(__c.1466)
+  79 000c 90E0      		ldi r25,hi8(__c.1466)
+  80 000e 00C0      		rjmp .L19
+  81               	.LVL9:
+  82               	.L6:
+  83               	.LSM9:
+  84 0010 8881      		ld r24,Y
+  85 0012 982F      		mov r25,r24
+  86               	.LVL10:
+  87 0014 9154      		subi r25,lo8(-(-65))
+  88 0016 9630      		cpi r25,lo8(6)
+  89 0018 00F0      		brlo .L8
+  90               	.LSM10:
+  91 001a 9052      		subi r25,lo8(-(-32))
+  92 001c 9630      		cpi r25,lo8(6)
+  93 001e 00F0      		brlo .L8
+  94               	.LSM11:
+  95 0020 80E0      		ldi r24,lo8(__c.1468)
+  96 0022 90E0      		ldi r25,hi8(__c.1468)
+  97 0024 0E94 0000 		call send_str
+  98               	.LVL11:
+  99               	.LSM12:
+ 100 0028 8881      		ld r24,Y
+ 101 002a 0E94 0000 		call usb_serial_putchar
+ 102               	.LSM13:
+ 103 002e 80E0      		ldi r24,lo8(__c.1470)
+ 104 0030 90E0      		ldi r25,hi8(__c.1470)
+ 105 0032 00C0      		rjmp .L19
+ 106               	.LVL12:
+ 107               	.L8:
+ 108               	.LSM14:
+ 109 0034 2981      		ldd r18,Y+1
+ 110               	.LVL13:
+ 111 0036 2053      		subi r18,lo8(-(-48))
+ 112 0038 2830      		cpi r18,lo8(8)
+ 113 003a 00F4      		brsh .L9
+ 114               	.LSM15:
+ 115 003c 8A81      		ldd r24,Y+2
+ 116 003e 8F33      		cpi r24,lo8(63)
+ 117 0040 01F4      		brne .L18
+ 118 0042 00C0      		rjmp .L21
+ 119               	.L9:
+ 120               	.LSM16:
+ 121 0044 80E0      		ldi r24,lo8(__c.1472)
+ 122 0046 90E0      		ldi r25,hi8(__c.1472)
+ 123 0048 0E94 0000 		call send_str
+ 124               	.LVL14:
+ 125               	.LSM17:
+ 126 004c 8881      		ld r24,Y
+ 127 004e 0E94 0000 		call usb_serial_putchar
+ 128               	.LSM18:
+ 129 0052 80E0      		ldi r24,lo8(__c.1474)
+ 130 0054 90E0      		ldi r25,hi8(__c.1474)
+ 131 0056 00C0      		rjmp .L19
+ 132               	.LVL15:
+ 133               	.L21:
+ 134               	.LSM19:
+ 135 0058 E3E0      		ldi r30,lo8(3)
+ 136 005a 9E9F      		mul r25,r30
+ 137 005c F001      		movw r30,r0
+ 138 005e 1124      		clr r1
+ 139 0060 81E0      		ldi r24,lo8(1)
+ 140 0062 90E0      		ldi r25,hi8(1)
+ 141 0064 00C0      		rjmp 2f
+ 142 0066 880F      	1:	lsl r24
+ 143 0068 991F      		rol r25
+ 144 006a 2A95      	2:	dec r18
+ 145 006c 02F4      		brpl 1b
+ 146 006e 382F      		mov r19,r24
+ 147 0070 3095      		com r19
+ 148 0072 21A1      		ldd r18,Z+33
+ 149               	.LVL16:
+ 150 0074 2323      		and r18,r19
+ 151 0076 21A3      		std Z+33,r18
+ 152               	.LSM20:
+ 153 0078 20A1      		ldd r18,Z+32
+ 154 007a 8223      		and r24,r18
+ 155 007c 01F4      		brne .L12
+ 156 007e 80E3      		ldi r24,lo8(48)
+ 157 0080 00C0      		rjmp .L13
+ 158               	.L12:
+ 159 0082 81E3      		ldi r24,lo8(49)
+ 160               	.L13:
+ 161 0084 0E94 0000 		call usb_serial_putchar
+ 162               	.LVL17:
+ 163               	.LSM21:
+ 164 0088 80E0      		ldi r24,lo8(__c.1476)
+ 165 008a 90E0      		ldi r25,hi8(__c.1476)
+ 166 008c 00C0      		rjmp .L19
+ 167               	.LVL18:
+ 168               	.L18:
+ 169               	.LSM22:
+ 170 008e 6330      		cpi r22,lo8(3)
+ 171 0090 01F0      		breq .L14
+ 172 0092 8D33      		cpi r24,lo8(61)
+ 173 0094 01F4      		brne .L14
+ 174               	.LSM23:
+ 175 0096 8B81      		ldd r24,Y+3
+ 176 0098 8033      		cpi r24,lo8(48)
+ 177 009a 01F4      		brne .L15
+ 178               	.LSM24:
+ 179 009c E3E0      		ldi r30,lo8(3)
+ 180 009e 9E9F      		mul r25,r30
+ 181 00a0 F001      		movw r30,r0
+ 182 00a2 1124      		clr r1
+ 183 00a4 81E0      		ldi r24,lo8(1)
+ 184 00a6 90E0      		ldi r25,hi8(1)
+ 185 00a8 00C0      		rjmp 2f
+ 186 00aa 880F      	1:	lsl r24
+ 187 00ac 991F      		rol r25
+ 188 00ae 2A95      	2:	dec r18
+ 189 00b0 02F4      		brpl 1b
+ 190 00b2 21A1      		ldd r18,Z+33
+ 191               	.LVL19:
+ 192 00b4 282B      		or r18,r24
+ 193 00b6 21A3      		std Z+33,r18
+ 194               	.LSM25:
+ 195 00b8 8095      		com r24
+ 196 00ba 22A1      		ldd r18,Z+34
+ 197 00bc 2823      		and r18,r24
+ 198 00be 00C0      		rjmp .L20
+ 199               	.LVL20:
+ 200               	.L15:
+ 201               	.LSM26:
+ 202 00c0 8133      		cpi r24,lo8(49)
+ 203 00c2 01F4      		brne .L16
+ 204               	.LSM27:
+ 205 00c4 E3E0      		ldi r30,lo8(3)
+ 206 00c6 9E9F      		mul r25,r30
+ 207 00c8 F001      		movw r30,r0
+ 208 00ca 1124      		clr r1
+ 209 00cc 81E0      		ldi r24,lo8(1)
+ 210 00ce 90E0      		ldi r25,hi8(1)
+ 211 00d0 00C0      		rjmp 2f
+ 212 00d2 880F      	1:	lsl r24
+ 213 00d4 991F      		rol r25
+ 214 00d6 2A95      	2:	dec r18
+ 215 00d8 02F4      		brpl 1b
+ 216 00da 21A1      		ldd r18,Z+33
+ 217               	.LVL21:
+ 218 00dc 282B      		or r18,r24
+ 219 00de 21A3      		std Z+33,r18
+ 220               	.LSM28:
+ 221 00e0 22A1      		ldd r18,Z+34
+ 222 00e2 282B      		or r18,r24
+ 223               	.L20:
+ 224 00e4 22A3      		std Z+34,r18
+ 225 00e6 00C0      		rjmp .L17
+ 226               	.LVL22:
+ 227               	.L16:
+ 228               	.LSM29:
+ 229 00e8 80E0      		ldi r24,lo8(__c.1478)
+ 230 00ea 90E0      		ldi r25,hi8(__c.1478)
+ 231 00ec 0E94 0000 		call send_str
+ 232               	.LVL23:
+ 233               	.LSM30:
+ 234 00f0 8B81      		ldd r24,Y+3
+ 235 00f2 0E94 0000 		call usb_serial_putchar
+ 236               	.LSM31:
+ 237 00f6 80E0      		ldi r24,lo8(__c.1480)
+ 238 00f8 90E0      		ldi r25,hi8(__c.1480)
+ 239 00fa 00C0      		rjmp .L19
+ 240               	.LVL24:
+ 241               	.L14:
+ 242               	.LSM32:
+ 243 00fc 80E0      		ldi r24,lo8(__c.1482)
+ 244 00fe 90E0      		ldi r25,hi8(__c.1482)
+ 245 0100 0E94 0000 		call send_str
+ 246               	.LVL25:
+ 247               	.LSM33:
+ 248 0104 8881      		ld r24,Y
+ 249 0106 0E94 0000 		call usb_serial_putchar
+ 250               	.LSM34:
+ 251 010a 80E0      		ldi r24,lo8(__c.1484)
+ 252 010c 90E0      		ldi r25,hi8(__c.1484)
+ 253               	.LVL26:
+ 254               	.L19:
+ 255 010e 0E94 0000 		call send_str
+ 256               	.LVL27:
+ 257               	.L17:
+ 258               	/* epilogue start */
+ 259               	.LSM35:
+ 260 0112 DF91      		pop r29
+ 261 0114 CF91      		pop r28
+ 262               	.LVL28:
+ 263 0116 0895      		ret
+ 264               	.LFE9:
+ 266               		.section	.text.recv_str,"ax",@progbits
+ 267               	.global	recv_str
+ 269               	recv_str:
+ 270               	.LFB8:
+ 271               	.LSM36:
+ 272               	.LVL29:
+ 273 0000 0F93      		push r16
+ 274 0002 1F93      		push r17
+ 275 0004 CF93      		push r28
+ 276 0006 DF93      		push r29
+ 277               	/* prologue: function */
+ 278               	/* frame size = 0 */
+ 279 0008 EC01      		movw r28,r24
+ 280 000a 062F      		mov r16,r22
+ 281               	.LSM37:
+ 282 000c 10E0      		ldi r17,lo8(0)
+ 283               	.LVL30:
+ 284 000e 00C0      		rjmp .L31
+ 285               	.LVL31:
+ 286               	.L27:
+ 287               	.LSM38:
+ 288 0010 0E94 0000 		call usb_serial_getchar
+ 289               	.LVL32:
+ 290 0014 9C01      		movw r18,r24
+ 291               	.LVL33:
+ 292               	.LSM39:
+ 293 0016 8FEF      		ldi r24,hi8(-1)
+ 294 0018 2F3F      		cpi r18,lo8(-1)
+ 295 001a 3807      		cpc r19,r24
+ 296 001c 01F0      		breq .L24
+ 297               	.LSM40:
+ 298 001e 2D30      		cpi r18,13
+ 299 0020 3105      		cpc r19,__zero_reg__
+ 300 0022 01F0      		breq .L25
+ 301 0024 2A30      		cpi r18,10
+ 302 0026 3105      		cpc r19,__zero_reg__
+ 303 0028 01F0      		breq .L25
+ 304               	.LSM41:
+ 305 002a C901      		movw r24,r18
+ 306 002c 8097      		sbiw r24,32
+ 307 002e 8F35      		cpi r24,95
+ 308 0030 9105      		cpc r25,__zero_reg__
+ 309 0032 00F4      		brsh .L31
+ 310               	.LSM42:
+ 311 0034 2993      		st Y+,r18
+ 312               	.LSM43:
+ 313 0036 822F      		mov r24,r18
+ 314 0038 0E94 0000 		call usb_serial_putchar
+ 315               	.LVL34:
+ 316               	.LSM44:
+ 317 003c 1F5F      		subi r17,lo8(-(1))
+ 318 003e 00C0      		rjmp .L31
+ 319               	.LVL35:
+ 320               	.L24:
+ 321               	.LSM45:
+ 322 0040 0E94 0000 		call usb_configured
+ 323               	.LVL36:
+ 324 0044 8823      		tst r24
+ 325 0046 01F0      		breq .L26
+ 326 0048 0E94 0000 		call usb_serial_get_control
+ 327 004c 80FF      		sbrs r24,0
+ 328 004e 00C0      		rjmp .L26
+ 329               	.LVL37:
+ 330               	.L31:
+ 331               	.LSM46:
+ 332 0050 1017      		cp r17,r16
+ 333 0052 00F0      		brlo .L27
+ 334 0054 00C0      		rjmp .L25
+ 335               	.LVL38:
+ 336               	.L26:
+ 337 0056 1FEF      		ldi r17,lo8(-1)
+ 338               	.LVL39:
+ 339               	.L25:
+ 340               	.LSM47:
+ 341 0058 812F      		mov r24,r17
+ 342               	/* epilogue start */
+ 343 005a DF91      		pop r29
+ 344 005c CF91      		pop r28
+ 345               	.LVL40:
+ 346 005e 1F91      		pop r17
+ 347               	.LVL41:
+ 348 0060 0F91      		pop r16
+ 349               	.LVL42:
+ 350 0062 0895      		ret
+ 351               	.LFE8:
+ 353               		.section	.text.main,"ax",@progbits
+ 354               	.global	main
+ 356               	main:
+ 357               	.LFB6:
+ 358               	.LSM48:
+ 359 0000 EF92      		push r14
+ 360 0002 FF92      		push r15
+ 361 0004 1F93      		push r17
+ 362 0006 DF93      		push r29
+ 363 0008 CF93      		push r28
+ 364 000a CDB7      		in r28,__SP_L__
+ 365 000c DEB7      		in r29,__SP_H__
+ 366 000e A097      		sbiw r28,32
+ 367 0010 0FB6      		in __tmp_reg__,__SREG__
+ 368 0012 F894      		cli
+ 369 0014 DEBF      		out __SP_H__,r29
+ 370 0016 0FBE      		out __SREG__,__tmp_reg__
+ 371 0018 CDBF      		out __SP_L__,r28
+ 372               	/* prologue: function */
+ 373               	/* frame size = 32 */
+ 374               	.LSM49:
+ 375 001a 80E8      		ldi r24,lo8(-128)
+ 376 001c 8093 6100 		sts 97,r24
+ 377 0020 1092 6100 		sts 97,__zero_reg__
+ 378               	.LSM50:
+ 379 0024 569A      		sbi 42-32,6
+ 380               	.LSM51:
+ 381 0026 5E9A      		sbi 43-32,6
+ 382               	.LSM52:
+ 383 0028 0E94 0000 		call usb_init
+ 384               	.L33:
+ 385               	.LSM53:
+ 386 002c 0E94 0000 		call usb_configured
+ 387 0030 8823      		tst r24
+ 388 0032 01F0      		breq .L33
+ 389 0034 80E1      		ldi r24,lo8(10000)
+ 390 0036 97E2      		ldi r25,hi8(10000)
+ 391               	.LVL43:
+ 392               	.LBB16:
+ 393               	.LBB17:
+ 394               	.LBB18:
+ 395               	.LBB19:
+ 396               	.LSM54:
+ 397 0038 20E9      		ldi r18,lo8(400)
+ 398 003a 31E0      		ldi r19,hi8(400)
+ 399               	.L34:
+ 400 003c F901      		movw r30,r18
+ 401               	.LVL44:
+ 402               	/* #APP */
+ 403               	 ;  105 "c:/cab202_software/cygwin/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 404 003e 3197      		1: sbiw r30,1
+ 405 0040 01F4      		brne 1b
+ 406               	 ;  0 "" 2
+ 407               	/* #NOAPP */
+ 408               	.LBE19:
+ 409               	.LBE18:
+ 410               	.LSM55:
+ 411 0042 0197      		sbiw r24,1
+ 412               	.LSM56:
+ 413 0044 01F4      		brne .L34
+ 414               	.LBE17:
+ 415               	.LBE16:
+ 416               	.LSM57:
+ 417 0046 7E01      		movw r14,r28
+ 418 0048 0894      		sec
+ 419 004a E11C      		adc r14,__zero_reg__
+ 420 004c F11C      		adc r15,__zero_reg__
+ 421               	.LVL45:
+ 422               	.L42:
+ 423               	.LSM58:
+ 424 004e 0E94 0000 		call usb_serial_get_control
+ 425               	.LVL46:
+ 426 0052 80FF      		sbrs r24,0
+ 427 0054 00C0      		rjmp .L42
+ 428               	.LSM59:
+ 429 0056 0E94 0000 		call usb_serial_flush_input
+ 430               	.LSM60:
+ 431 005a 80E0      		ldi r24,lo8(__c.1405)
+ 432 005c 90E0      		ldi r25,hi8(__c.1405)
+ 433 005e 0E94 0000 		call send_str
+ 434               	.L36:
+ 435               	.LSM61:
+ 436 0062 80E0      		ldi r24,lo8(__c.1407)
+ 437 0064 90E0      		ldi r25,hi8(__c.1407)
+ 438 0066 0E94 0000 		call send_str
+ 439               	.LSM62:
+ 440 006a C701      		movw r24,r14
+ 441 006c 60E2      		ldi r22,lo8(32)
+ 442 006e 0E94 0000 		call recv_str
+ 443 0072 182F      		mov r17,r24
+ 444               	.LSM63:
+ 445 0074 8F3F      		cpi r24,lo8(-1)
+ 446 0076 01F0      		breq .L42
+ 447               	.LVL47:
+ 448               	.LSM64:
+ 449 0078 80E0      		ldi r24,lo8(__c.1410)
+ 450 007a 90E0      		ldi r25,hi8(__c.1410)
+ 451               	.LVL48:
+ 452 007c 0E94 0000 		call send_str
+ 453               	.LSM65:
+ 454 0080 C701      		movw r24,r14
+ 455 0082 612F      		mov r22,r17
+ 456 0084 0E94 0000 		call parse_and_execute_command
+ 457 0088 00C0      		rjmp .L36
+ 458               	.LFE6:
+ 460               		.section	.progmem.data,"a",@progbits
+ 463               	__c.1484:
+ 464 0000 222C 206D 		.string	"\", must be ? or =\r\n"
+ 464      7573 7420 
+ 464      6265 203F 
+ 464      206F 7220 
+ 464      3D0D 0A00 
+ 467               	__c.1482:
+ 468 0014 556E 6B6E 		.string	"Unknown command \""
+ 468      6F77 6E20 
+ 468      636F 6D6D 
+ 468      616E 6420 
+ 468      2200 
+ 471               	__c.1480:
+ 472 0026 222C 206D 		.string	"\", must be 0 or 1\r\n"
+ 472      7573 7420 
+ 472      6265 2030 
+ 472      206F 7220 
+ 472      310D 0A00 
+ 475               	__c.1478:
+ 476 003a 556E 6B6E 		.string	"Unknown value \""
+ 476      6F77 6E20 
+ 476      7661 6C75 
+ 476      6520 2200 
+ 479               	__c.1476:
+ 480 004a 0D0A 00   		.string	"\r\n"
+ 483               	__c.1474:
+ 484 004d 222C 206D 		.string	"\", must be 0 to 7\r\n"
+ 484      7573 7420 
+ 484      6265 2030 
+ 484      2074 6F20 
+ 484      370D 0A00 
+ 487               	__c.1472:
+ 488 0061 556E 6B6E 		.string	"Unknown pin \""
+ 488      6F77 6E20 
+ 488      7069 6E20 
+ 488      2200 
+ 491               	__c.1470:
+ 492 006f 222C 206D 		.string	"\", must be A - F\r\n"
+ 492      7573 7420 
+ 492      6265 2041 
+ 492      202D 2046 
+ 492      0D0A 00
+ 495               	__c.1468:
+ 496 0082 556E 6B6E 		.string	"Unknown port \""
+ 496      6F77 6E20 
+ 496      706F 7274 
+ 496      2022 00
+ 499               	__c.1466:
+ 500 0091 756E 7265 		.string	"unrecognized format, 3 chars min req'd\r\n"
+ 500      636F 676E 
+ 500      697A 6564 
+ 500      2066 6F72 
+ 500      6D61 742C 
+ 503               	__c.1410:
+ 504 00ba 0D0A 00   		.string	"\r\n"
+ 507               	__c.1407:
+ 508 00bd 3E20 00   		.string	"> "
+ 511               	__c.1405:
+ 512 00c0 0D0A 5465 		.ascii	"\r\nTeensy USB Serial Example, Simple Pin Control Shell\r\n\r"
+ 512      656E 7379 
+ 512      2055 5342 
+ 512      2053 6572 
+ 512      6961 6C20 
+ 513 00f8 0A45 7861 		.ascii	"\nExample Commands\r\n  B0?   Read Port B, pin 0\r\n  C2=0  "
+ 513      6D70 6C65 
+ 513      2043 6F6D 
+ 513      6D61 6E64 
+ 513      730D 0A20 
+ 514 012f 5772 6974 		.ascii	"Write Port C, "
+ 514      6520 506F 
+ 514      7274 2043 
+ 514      2C20 
+ 515 013d 7069 6E20 		.string	"pin 1 LOW\r\n  D6=1  Write Port D, pin 6 HIGH  (D6 is LED pin)\r\n\r\n"
+ 515      3120 4C4F 
+ 515      570D 0A20 
+ 515      2044 363D 
+ 515      3120 2057 
+ 564               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 example.c
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:2      *ABS*:0000003f __SREG__
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:3      *ABS*:0000003e __SP_H__
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:4      *ABS*:0000003d __SP_L__
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:5      *ABS*:00000034 __CCP__
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:6      *ABS*:00000000 __tmp_reg__
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:7      *ABS*:00000001 __zero_reg__
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:19     .text.send_str:00000000 send_str
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:64     .text.parse_and_execute_command:00000000 parse_and_execute_command
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:499    .progmem.data:00000091 __c.1466
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:495    .progmem.data:00000082 __c.1468
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:491    .progmem.data:0000006f __c.1470
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:487    .progmem.data:00000061 __c.1472
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:483    .progmem.data:0000004d __c.1474
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:479    .progmem.data:0000004a __c.1476
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:475    .progmem.data:0000003a __c.1478
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:471    .progmem.data:00000026 __c.1480
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:467    .progmem.data:00000014 __c.1482
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:463    .progmem.data:00000000 __c.1484
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:269    .text.recv_str:00000000 recv_str
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:356    .text.main:00000000 main
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:511    .progmem.data:000000c0 __c.1405
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:507    .progmem.data:000000bd __c.1407
+C:\cab202_software\cygwin\tmp/ccre5xA8.s:503    .progmem.data:000000ba __c.1410
+
+UNDEFINED SYMBOLS
+usb_serial_putchar
+usb_serial_getchar
+usb_configured
+usb_serial_get_control
+usb_init
+usb_serial_flush_input
